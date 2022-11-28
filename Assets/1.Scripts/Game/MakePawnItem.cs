@@ -14,25 +14,46 @@ public class MakePawnItem : MonoBehaviour
     private Image delayImage;
     [SerializeField]
     private TMP_Text delayTxt;
+    [SerializeField]
+    private TMP_Text priceTxt;
+
+    private DataPawn.PawnData data = new DataPawn.PawnData();
+    private GameUI gameUI;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Init(data);
         delayObj.SetActive(false);
         makeBtn.onClick.AddListener(OnMakePawn);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Init(DataPawn.PawnData pawnData, GameUI ui)
     {
-        
+        data.delaymaxtime = pawnData.delaymaxtime;
+        data.index = pawnData.index;
+        data.price = pawnData.price;
+
+        gameUI = ui;
+        priceTxt.text = data.price.ToString();
     }
 
     void OnMakePawn()
     {
-        delayObj.SetActive(true);
-        StartCoroutine(DelayTime(3f));
+        if(delayImage.fillAmount != 1f)
+        {
+            return;
+        }
+
+        if (gameUI.IsGageCheck(data.price))
+        {
+            delayObj.SetActive(true);
+            gameUI.Gage -= data.price;
+            StartCoroutine(DelayTime(data.delaymaxtime));
+        }
     }
+
+    
 
     IEnumerator DelayTime(float delay)
     {
