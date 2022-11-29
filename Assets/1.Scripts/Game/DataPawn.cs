@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DataPawn : MonoBehaviour
 {
-    public static DataPawn Ins;
+    
 
     [System.Serializable]
     public class PawnData
@@ -31,11 +31,16 @@ public class DataPawn : MonoBehaviour
     
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        Ins = this;
+       
         pawnData = JsonUtility.FromJson<Pawn>(pawnDatajson.text);
 
+    }
+
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame

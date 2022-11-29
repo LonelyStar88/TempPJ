@@ -50,6 +50,7 @@ public class MakePawnItem : MonoBehaviour
             delayObj.SetActive(true);
             gameUI.Gage -= data.price;
             StartCoroutine(DelayTime(data.delaymaxtime));
+            Manager.Ins.spawnMgr.MySpawn(data.index);
         }
     }
 

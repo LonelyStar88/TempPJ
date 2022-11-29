@@ -45,7 +45,7 @@ public class GameUI : MonoBehaviour
         maxgage = 100f;
         Gage = 0;
 
-        foreach(DataPawn.PawnData item in DataPawn.Ins.pawnData.pawn)
+        foreach (DataPawn.PawnData item in Manager.Ins.dataPawn.pawnData.pawn)
         {
             Instantiate(prefab, parent).GetComponent<MakePawnItem>().Init(item, this);
         }
