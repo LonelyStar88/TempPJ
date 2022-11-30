@@ -9,6 +9,10 @@ public class Monster : MonoBehaviour
 
     [SerializeField]
     private Animator animator;
+
+    private float delayTime = 0f;
+
+    private float damage = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,10 +35,15 @@ public class Monster : MonoBehaviour
         else
         {
             float dis = Vector3.Distance(transform.position, targetCastle.transform.position);
+            delatyTime += delayTime.deltaTime;
             if (dis < 5)
             {
-                // 공격
-                Animation("Attack");
+                if (delayTime < 1f)
+                {
+                    delayTime = 0;
+                    // 공격
+                    Animation("Attack");
+                }
             }
             else
             {
