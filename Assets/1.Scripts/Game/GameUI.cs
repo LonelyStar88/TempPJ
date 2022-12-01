@@ -7,6 +7,11 @@ using TMPro;
 public class GameUI : MonoBehaviour
 {
     [SerializeField]
+    private MyCastle myCastle;
+    [SerializeField]
+    private EnemyCastle enemyCastle;
+
+    [SerializeField]
     private Image GageImage;
     [SerializeField]
     private TMP_Text GageTxt;
@@ -22,6 +27,11 @@ public class GameUI : MonoBehaviour
     private Transform parent;
     [SerializeField]
     private GameObject prefab;
+
+    [SerializeField]
+    private Image myCastleHPImage;
+    [SerializeField]
+    private Image enemyCastleHPImage;
 
     public bool IsGageCheck(int value)
     {
@@ -63,9 +73,9 @@ public class GameUI : MonoBehaviour
                 Gage += 0.2f;
             }
         }
-        if(Input.GetKeyDown(KeyCode.F1))
-        {
-            Gage -= 20f;
-        }
+
+        myCastleHPImage.fillAmount = myCastle.HP / myCastle.MaxHP;
+        enemyCastleHPImage.fillAmount = enemyCastle.HP / enemyCastle.MaxHP;
+       
     }
 }

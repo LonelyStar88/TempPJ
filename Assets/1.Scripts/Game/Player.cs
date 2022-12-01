@@ -10,10 +10,10 @@ public class Player : MonoBehaviour
     private GameObject Target;
     [SerializeField]
     private Transform cameraTrans;
+
     [SerializeField]
-    private Image PlayerHPimage;
-    [SerializeField]
-    private TMP_Text PlayerHPTxt;
+    private Animator animator;
+ 
     // Start is called before the first frame update
 
     float curHP = 0;
@@ -21,33 +21,58 @@ public class Player : MonoBehaviour
 
     float Cooltime = 0f;
     float damage = 50f;
+
+    bool isdamaged;
     //float time = 0f;
     void Start()
     {
         curHP = maxHP;
-        
+        isdamaged = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         Cooltime += Time.deltaTime;
-        PlayerHPimage.fillAmount = curHP / maxHP;
-        PlayerHPTxt.text = string.Format("{0}/{1}", curHP, maxHP);
+        
+        // 카메라가 나를 따라오게 만듬
         Vector3 cameraPos = new Vector3(transform.position.x, cameraTrans.position.y, cameraTrans.position.z);
         cameraTrans.position = cameraPos;
-        float x = Input.GetAxisRaw("Horizontal");
-        if(transform.position.x > -36f && transform.position.x < 36f)
+
+        // 캐릭터 이동 범위 지정
+        float x = Input.GetAxisRaw("Horizontal") * Time.deltaTime * 3f;
+        float clampX = Mathf.Clamp(transform.position.x + x, -35f, 35f);
+        transform.position = new Vector3(clampX, 0f, 0f);
+
+        // 캐릭터 이동에 따른 애니메이션 작업
+        if(x == 0)
         {
-            transform.position += new Vector3(x, 0, 0) * Time.deltaTime * 5f;
-        }
-        else if(transform.position.x <= -36f)
-        {
-            transform.position = new Vector3(-35.9f, 1f,0);
+            //멈춰있는 상태
+            Animation("Idle");
         }
         else
         {
-            transform.position = new Vector3(35.9f, 1f, 0);
+            if(true)
+            {
+                //이동
+                Animation("Run");
+
+                if(x > 0)
+                {
+                    transform.localRotation = Quaternion.Euler(0, 90f, 0);
+                }
+                else
+                {
+                    transform.localRotation = Quaternion.Euler(0, -90f, 0);
+                }
+            }
+            else
+            {
+                /*
+                //공격
+                Animation("Attack");*/
+            }
+            
         }
 
         if(Input.GetKeyDown(KeyCode.F1))
@@ -55,12 +80,34 @@ public class Player : MonoBehaviour
             float dis = Vector3.Distance(transform.position, Target.transform.position);
             if (dis < 12f)
             {
-                if (Cooltime > 10f)
+                if (Cooltime > 2f)
                 {
                     Cooltime = 0f;
-                    Target.GetComponent<EnemyCastle>().HP = damage;
+                    Animation("Attack");
+                    isdamaged = true;
+                    StartCoroutine("Damaged");
                 }
             }
+            else
+            {
+                Debug.Log("Too far!");
+            }
         }
+    }
+
+    public void Animation(string aniName)
+    {
+        animator.SetTrigger(aniName);
+    }
+    IEnumerator Damaged()
+    {
+        if (isdamaged)
+        {
+            yield return new WaitForSeconds(2f);
+            Target.GetComponent<EnemyCastle>().HP = damage;
+            
+        }
+        isdamaged = false;
+
     }
 }

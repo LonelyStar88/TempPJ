@@ -22,6 +22,7 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        delayTime += Time.deltaTime;
         // 가장 가까운 적 찾기
         FindEnemy();
     }
@@ -35,27 +36,34 @@ public class Monster : MonoBehaviour
         else
         {
             float dis = Vector3.Distance(transform.position, targetCastle.transform.position);
-            delatyTime += delayTime.deltaTime;
-            if (dis < 5)
+            
+            if (dis < 10)
             {
-                if (delayTime < 1f)
+                if (delayTime > 1f)
                 {
                     delayTime = 0;
+                    AttackCastle();
                     // 공격
                     Animation("Attack");
+                    
                 }
             }
             else
             {
                 // 이동
                 Animation("Walk");
-                transform.position += Vector3.right * Time.deltaTime * 10f;
+                transform.position += Vector3.right * Time.deltaTime * 3f;
             }
         }
 
         void Animation(string aniName)
         {
             animator.SetTrigger(aniName);
+        }
+
+        void AttackCastle()
+        {
+            targetCastle.GetComponent<EnemyCastle>().HP = damage;
         }
     }
 }

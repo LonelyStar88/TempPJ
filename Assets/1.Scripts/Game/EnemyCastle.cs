@@ -10,22 +10,19 @@ public class EnemyCastle : MonoBehaviour
     private float maxHP = 1000f;
     private float curHP = 0f;
 
-    [SerializeField]
-    private TMP_Text HPTxt;
-    [SerializeField]
-    private Image HPImage;
-    [SerializeField]
-    private Transform canvas;
+  
+   
     // Start is called before the first frame update
     void Start()
     {
+        MaxHP = 1000f;
         curHP = maxHP;
         HP = 0;
     }
 
     void Update()
     {
-        canvas.LookAt(Camera.main.transform);  
+         
     }
     //값을 넣고 빼는 형태로 적합한 케이스
     public float HP
@@ -42,8 +39,17 @@ public class EnemyCastle : MonoBehaviour
             {
                 curHP = 0;
             }
-            HPImage.fillAmount = curHP / maxHP;
-            HPTxt.text = string.Format("{0}/{1}", curHP, maxHP);
+          
         }
     }
+
+    public float MaxHP
+    {
+        get { return maxHP; }
+        set
+        {
+            maxHP = value;
+        }
+    }
+
 }
