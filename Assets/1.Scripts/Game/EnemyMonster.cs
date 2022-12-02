@@ -13,6 +13,25 @@ public class EnemyMonster : MonoBehaviour
     private float delayTime = 0f;
 
     private float damage = 1f;
+
+    public float curHP = 0;
+    public float maxHP = 100;
+    public float HP
+    {
+        get { return curHP; }
+        set
+        {
+            curHP -= value;
+            if (curHP <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+    public float MaxHP
+    {
+        set { curHP = maxHP = value; }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -29,9 +48,43 @@ public class EnemyMonster : MonoBehaviour
     void FindEnemy()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("My");
-        if (false)
+        if (objs.Length != 0)
         {
             //적을 찾는다.
+            float dis = 0;
+            float findIdx = -1;
+            GameObject target = null;
+            for (int i = 0; i < objs.Length; i++)
+            {
+                // 나와 가까운 적을 찾는다.
+                float distance = Vector3.Distance(transform.position, objs[i].transform.position);
+                if (dis == 0 || dis > distance)
+                {
+                    dis = distance;
+                    findIdx = i;
+                    target = objs[i];
+                }
+
+            }
+            if (findIdx == -1)
+            {
+                return;
+            }
+            if (target != null)
+            {
+                float distance = Vector3.Distance(transform.position, target.transform.position);
+
+                if (distance < 10)
+                {
+                    //공격
+                }
+                else
+                {
+                    //이동
+                    Animation("Walk");
+                    transform.position += Vector3.left * Time.deltaTime * 3f;
+                }
+            }
         }
         else
         {
@@ -56,13 +109,22 @@ public class EnemyMonster : MonoBehaviour
             }
         }
 
-        void Animation(string aniName)
-        {
-            animator.SetTrigger(aniName);
-        }
-        void AttackCastle()
-        {
-            targetCastle.GetComponent<EnemyCastle>().HP = damage;
-        }
+       
+    }
+    void Animation(string aniName)
+    {
+        animator.SetTrigger(aniName);
+    }
+    void AttackCastle()
+    {
+        targetCastle.GetComponent<MyCastle>().HP = damage;
+    }
+    void Attack()
+    {
+
+    }
+    public void Damage(float argDmg)
+    {
+        HP = argDmg;
     }
 }
