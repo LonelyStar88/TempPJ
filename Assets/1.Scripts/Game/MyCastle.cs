@@ -50,4 +50,12 @@ public class MyCastle : MonoBehaviour
             maxHP = value;
         }
     }
+    public void Damage(float damage)
+    {
+        HP = damage;
+        if (HP <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

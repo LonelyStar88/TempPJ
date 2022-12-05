@@ -11,10 +11,9 @@ public class EnemyMonster : MonoBehaviour
     private Animator animator;
 
     private float delayTime = 0f;
-
-    private float damage = 1f;
-
-    public float curHP = 0;
+    float attackTime = 0f;
+    private float damage = 5f;
+    public float curHP = 100;
     public float maxHP = 100;
     public float HP
     {
@@ -31,6 +30,18 @@ public class EnemyMonster : MonoBehaviour
     public float MaxHP
     {
         set { curHP = maxHP = value; }
+    }
+
+    DataPawn.EnemyPawnData data = new DataPawn.EnemyPawnData();
+
+    public void Initialized(DataPawn.EnemyPawnData argData)
+    {
+        data.damage = argData.damage;
+        data.delaytime = argData.delaytime;
+        data.hp = argData.hp;
+
+        MaxHP = data.hp;
+        damage = data.damage;
     }
     // Start is called before the first frame update
     void Start()
@@ -77,6 +88,9 @@ public class EnemyMonster : MonoBehaviour
                 if (distance < 10)
                 {
                     //АјАн
+                    Attack(target);
+
+                    Animation("Attack");
                 }
                 else
                 {
@@ -117,11 +131,23 @@ public class EnemyMonster : MonoBehaviour
     }
     void AttackCastle()
     {
-        targetCastle.GetComponent<MyCastle>().HP = damage;
+        targetCastle.GetComponent<MyCastle>().Damage(damage);
     }
-    void Attack()
+    void Attack(GameObject obj)
     {
-
+        attackTime += Time.deltaTime;
+        if (attackTime > data.attackdelaytime)
+        {
+            if (obj.name != "Player")
+            {
+                obj.GetComponent<Monster>().Damage(damage);
+            }
+            else
+            {
+                obj.GetComponent<Player>().Damage(damage);
+            }
+            attackTime = 0f;
+        }
     }
     public void Damage(float argDmg)
     {

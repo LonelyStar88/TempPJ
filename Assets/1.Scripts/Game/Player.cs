@@ -16,18 +16,39 @@ public class Player : MonoBehaviour
  
     // Start is called before the first frame update
 
-    float curHP = 0;
-    float maxHP = 100;
+    
 
     float Cooltime = 0f;
     float damage = 50f;
 
-    bool isdamaged;
+    bool isdamage;
+
+    public float curHP = 100;
+    public float maxHP = 100;
+    public float HP
+    {
+        get { return curHP; }
+        set
+        {
+            curHP -= value;
+            if (curHP <= 0)
+            {
+                Animation("Die");
+                Debug.Log("Game Over!");
+                
+                return;
+            }
+        }
+    }
+    public float MaxHP
+    {
+        set { curHP = maxHP = value; }
+    }
     //float time = 0f;
     void Start()
     {
-        curHP = maxHP;
-        isdamaged = false;
+        MaxHP = maxHP;
+        isdamage = false;
     }
 
     // Update is called once per frame
@@ -84,8 +105,8 @@ public class Player : MonoBehaviour
                 {
                     Cooltime = 0f;
                     Animation("Attack");
-                    isdamaged = true;
-                    StartCoroutine("Damaged");
+                    isdamage = true;
+                    StartCoroutine("Damage");
                 }
             }
             else
@@ -99,15 +120,19 @@ public class Player : MonoBehaviour
     {
         animator.SetTrigger(aniName);
     }
-    IEnumerator Damaged()
+    IEnumerator Damage()
     {
-        if (isdamaged)
+        if (isdamage)
         {
             yield return new WaitForSeconds(2f);
             Target.GetComponent<EnemyCastle>().HP = damage;
             
         }
-        isdamaged = false;
+        isdamage = false;
 
+    }
+    public void Damage(float argDmg)
+    {
+        HP = argDmg;
     }
 }

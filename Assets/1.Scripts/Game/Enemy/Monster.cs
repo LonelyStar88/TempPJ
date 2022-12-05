@@ -32,6 +32,18 @@ public class Monster : MonoBehaviour
     {
         set  { curHP = maxHP = value; }
     }
+
+    DataPawn.PawnData data = new DataPawn.PawnData();
+
+    public void Initialized(DataPawn.PawnData argData)
+    {
+        data.damage = argData.damage;
+        data.delaymaxtime = argData.delaymaxtime;
+        data.hp = argData.hp;
+
+        MaxHP = data.hp;
+        damage = data.damage;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -123,7 +135,7 @@ public class Monster : MonoBehaviour
 
     void AttackCastle()
     {
-        targetCastle.GetComponent<EnemyCastle>().HP = damage;
+        targetCastle.GetComponent<EnemyCastle>().Damage(damage);
     }
 
     

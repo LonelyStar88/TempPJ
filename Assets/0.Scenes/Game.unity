@@ -1678,7 +1678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myPawns:
   - {fileID: 9036454502400580912, guid: aea28cb7623412f4c855c1141bb52ea2, type: 3}
-  - {fileID: 9036454502400580912, guid: 6091488ef13fc924a9eca773970b3be8, type: 3}
+  - {fileID: 3333985146416421528, guid: 40428cd254abb6545b0e8068fec00acc, type: 3}
   - {fileID: 9036454502400580912, guid: c524414d0cfeeb641a5233a8d739b2e2, type: 3}
   - {fileID: 9036454502400580912, guid: e8058e65c7a7d8c4eae9aa12e5619de5, type: 3}
   - {fileID: 9036454502400580912, guid: e0a43e29eeb27324f953b7dce1cc33d6, type: 3}
@@ -1689,15 +1689,15 @@ MonoBehaviour:
   - {fileID: 9036454502400580912, guid: 4f043a1c6831e794fb863256ee66be3e, type: 3}
   enemyPawns:
   - {fileID: 5040861595932249271, guid: b293b787c55f0e0448bc0c6ee2c5daf0, type: 3}
-  - {fileID: 5040861595932249271, guid: b293b787c55f0e0448bc0c6ee2c5daf0, type: 3}
-  - {fileID: 5040861595932249271, guid: b293b787c55f0e0448bc0c6ee2c5daf0, type: 3}
-  - {fileID: 5040861595932249271, guid: b293b787c55f0e0448bc0c6ee2c5daf0, type: 3}
-  - {fileID: 5040861595932249271, guid: b293b787c55f0e0448bc0c6ee2c5daf0, type: 3}
-  - {fileID: 5040861595932249271, guid: b293b787c55f0e0448bc0c6ee2c5daf0, type: 3}
-  - {fileID: 5040861595932249271, guid: b293b787c55f0e0448bc0c6ee2c5daf0, type: 3}
-  - {fileID: 5040861595932249271, guid: b293b787c55f0e0448bc0c6ee2c5daf0, type: 3}
-  - {fileID: 5040861595932249271, guid: b293b787c55f0e0448bc0c6ee2c5daf0, type: 3}
-  - {fileID: 5040861595932249271, guid: b293b787c55f0e0448bc0c6ee2c5daf0, type: 3}
+  - {fileID: 6705402075998324148, guid: d941199d4a58fcb45adc75ea8e37c42c, type: 3}
+  - {fileID: 2795397902362475942, guid: 72c47fdc43d84b243bdc109c284341d6, type: 3}
+  - {fileID: 6173172085731050060, guid: fa12db7f8a3f0714799c08ee4da865d6, type: 3}
+  - {fileID: 6891580169314388076, guid: 66ae442726d1cf4428dacb34edd61ac4, type: 3}
+  - {fileID: 7099655024501674456, guid: 8760cc9eb30a2b340b14499b6e150dc4, type: 3}
+  - {fileID: 6688149642241925542, guid: 11eed2dfd1329ab4db9e7f27b8e628b7, type: 3}
+  - {fileID: 3198502390492704377, guid: 0ba0f6eee23032e4e83d421e739dc905, type: 3}
+  - {fileID: 873531700701352353, guid: 28d0a30d6aed6fc4c8ca473413f70c24, type: 3}
+  - {fileID: 4281683080859636826, guid: 93df5c48d5e021040916b0e984d9b01a, type: 3}
   myPawnPoints:
   - {fileID: 43258828}
   - {fileID: 714757916}
@@ -2652,34 +2652,107 @@ MonoBehaviour:
     pawn:
     - index: 0
       price: 0
+      damage: 0
+      hp: 0
       delaymaxtime: 0
     - index: 0
       price: 0
+      damage: 0
+      hp: 0
       delaymaxtime: 0
     - index: 0
       price: 0
+      damage: 0
+      hp: 0
       delaymaxtime: 0
     - index: 0
       price: 0
+      damage: 0
+      hp: 0
       delaymaxtime: 0
     - index: 0
       price: 0
+      damage: 0
+      hp: 0
       delaymaxtime: 0
     - index: 0
       price: 0
+      damage: 0
+      hp: 0
       delaymaxtime: 0
     - index: 0
       price: 0
+      damage: 0
+      hp: 0
       delaymaxtime: 0
     - index: 0
       price: 0
+      damage: 0
+      hp: 0
       delaymaxtime: 0
     - index: 0
       price: 0
+      damage: 0
+      hp: 0
       delaymaxtime: 0
     - index: 0
       price: 0
+      damage: 0
+      hp: 0
       delaymaxtime: 0
+  enemyPawn:
+    monster:
+    - index: 0
+      damage: 0
+      delaytime: 0
+      hp: 0
+      attackdelaytime: 0
+    - index: 0
+      damage: 0
+      delaytime: 0
+      hp: 0
+      attackdelaytime: 0
+    - index: 0
+      damage: 0
+      delaytime: 0
+      hp: 0
+      attackdelaytime: 0
+    - index: 0
+      damage: 0
+      delaytime: 0
+      hp: 0
+      attackdelaytime: 0
+    - index: 0
+      damage: 0
+      delaytime: 0
+      hp: 0
+      attackdelaytime: 0
+    - index: 0
+      damage: 0
+      delaytime: 0
+      hp: 0
+      attackdelaytime: 0
+    - index: 0
+      damage: 0
+      delaytime: 0
+      hp: 0
+      attackdelaytime: 0
+    - index: 0
+      damage: 0
+      delaytime: 0
+      hp: 0
+      attackdelaytime: 0
+    - index: 0
+      damage: 0
+      delaytime: 0
+      hp: 0
+      attackdelaytime: 0
+    - index: 0
+      damage: 0
+      delaytime: 0
+      hp: 0
+      attackdelaytime: 0
+  enemyPawnDataJson: {fileID: 4900000, guid: cdd296ae70497f94a9b2b78784b1909d, type: 3}
 --- !u!1 &2033038886
 GameObject:
   m_ObjectHideFlags: 0
@@ -5173,6 +5246,8 @@ MonoBehaviour:
   Target: {fileID: 34515168}
   cameraTrans: {fileID: 963194228}
   animator: {fileID: 7460560452937497196}
+  curHP: 0
+  maxHP: 100
 --- !u!137 &7460560452941726888
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

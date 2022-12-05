@@ -391,8 +391,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5035978066549319309}
-  - component: {fileID: 8719110891320605616}
   - component: {fileID: 4945332271713962195}
+  - component: {fileID: 7032662923459908457}
   m_Layer: 0
   m_Name: TurtleShell 1
   m_TagString: enemy
@@ -417,19 +417,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!114 &8719110891320605616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5040861595932249271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ed9dfe38e309ca41a25c44e00ff3da9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 4945332271713962195}
 --- !u!95 &4945332271713962195
 Animator:
   serializedVersion: 4
@@ -450,6 +437,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7032662923459908457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040861595932249271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed9dfe38e309ca41a25c44e00ff3da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 4945332271713962195}
+  curHP: 100
+  maxHP: 100
 --- !u!1 &5040866384259252741
 GameObject:
   m_ObjectHideFlags: 0

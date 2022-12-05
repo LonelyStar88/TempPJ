@@ -77,11 +77,11 @@ public class SpawnManager : MonoBehaviour
 
         if (isMy)
         {
-            pawnObj.GetComponent<Monster>().MaxHP = (index+1) * 100f;
+            pawnObj.GetComponent<Monster>().Initialized(Manager.Ins.dataPawn.pawnData.pawn[index]);
         }
         else
         {
-            pawnObj.GetComponent<EnemyMonster>().MaxHP = (index+1) * 100f;
+            pawnObj.GetComponent<EnemyMonster>().Initialized(Manager.Ins.dataPawn.enemyPawn.monster[index]);
         }
     }
 }
