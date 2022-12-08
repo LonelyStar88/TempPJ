@@ -23,9 +23,11 @@ public class SpawnManager : MonoBehaviour
     float enemyGage = 0;
     float enemyGageTime = 0;
     float enemyMaxGage = 150;
- 
+    float enemySpawnTime = 0f;
+    int enemySpawnIndex = 0;
+    float enemySpawnNextDelay = 1f;
 
-   
+
 
     public void MySpawn(int index)
     {
@@ -53,17 +55,26 @@ public class SpawnManager : MonoBehaviour
             if(enemyGage <= enemyMaxGage)
             {
                 enemyGage += 0.2f;
-            }
+            }      
+           
+        }
+        enemySpawnTime += Time.deltaTime;
+        if(enemySpawnTime > enemySpawnNextDelay)
+        {
             // 적 게이지에 따라 스폰 시킴
-            int enemySpawnIndex = Random.Range(0, enemyPawns.Length);
+            
             float enemySpawnGage = (enemySpawnIndex + 1) * 10f;
-            if(enemyGage >= enemySpawnGage)
+            if (enemyGage >= enemySpawnGage)
             {
-                
+
                 enemyGage -= (enemySpawnIndex + 1) * 10f;
                 Spawn(enemyPawns, enemyTeamParent, enemyPawnPoints, enemySpawnIndex, false);
+                enemySpawnIndex = Random.Range(0, enemyPawns.Length);
+                Debug.Log(enemySpawnIndex);
+                enemySpawnNextDelay = Manager.Ins.dataPawn.enemyPawn.monster[enemySpawnIndex].delaytime;
 
             }
+            enemySpawnTime = 0;
         }
     }
     

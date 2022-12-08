@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     float damage = 50f;
 
     bool isdamage;
-
+    public bool isDie = false;
     public float curHP = 100;
     public float maxHP = 100;
     public float HP
@@ -34,8 +34,8 @@ public class Player : MonoBehaviour
             if (curHP <= 0)
             {
                 Animation("Die");
-                Debug.Log("Game Over!");
-                
+                //Debug.Log("Game Over!");
+                isDie = true;
                 return;
             }
         }
@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
     {
         MaxHP = maxHP;
         isdamage = false;
+        isDie = false;
     }
 
     // Update is called once per frame
