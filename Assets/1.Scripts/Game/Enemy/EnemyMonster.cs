@@ -10,6 +10,9 @@ public class EnemyMonster : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    [SerializeField]
+    private UnityEngine.UI.Image hpImage;
+
     private float delayTime = 0f;
     float attackTime = 0f;
     private float damage = 0;
@@ -47,6 +50,7 @@ public class EnemyMonster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hpImage = transform.GetChild(2).GetChild(0).GetComponent<UnityEngine.UI.Image>();
         targetCastle = GameObject.FindGameObjectWithTag("MyCastle");
     }
 
@@ -54,8 +58,12 @@ public class EnemyMonster : MonoBehaviour
     void Update()
     {
         delayTime += Time.deltaTime;
+
+        
         // 가장 가까운 적 찾기
         FindEnemy();
+
+        
     }
     void FindEnemy()
     {
@@ -157,5 +165,6 @@ public class EnemyMonster : MonoBehaviour
     public void Damage(float argDmg)
     {
         HP = argDmg;
+        hpImage.fillAmount = HP / maxHP;
     }
 }

@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     private GameObject Target;
     [SerializeField]
     private Transform cameraTrans;
+    [SerializeField]
+    private UnityEngine.UI.Image hpImage;
 
     [SerializeField]
     private Animator animator;
@@ -47,6 +49,7 @@ public class Player : MonoBehaviour
     //float time = 0f;
     void Start()
     {
+        hpImage = transform.GetChild(3).GetChild(0).GetComponent<UnityEngine.UI.Image>();
         MaxHP = maxHP;
         isdamage = false;
         isDie = false;
@@ -96,7 +99,7 @@ public class Player : MonoBehaviour
             }
             
         }
-
+        /*
         if(Input.GetKeyDown(KeyCode.F1))
         {
             float dis = Vector3.Distance(transform.position, Target.transform.position);
@@ -114,7 +117,7 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("Too far!");
             }
-        }
+        }*/
     }
 
     public void Animation(string aniName)
@@ -135,5 +138,6 @@ public class Player : MonoBehaviour
     public void Damage(float argDmg)
     {
         HP = argDmg;
+        hpImage.fillAmount = HP / maxHP;
     }
 }

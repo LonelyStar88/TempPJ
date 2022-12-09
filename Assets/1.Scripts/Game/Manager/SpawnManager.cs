@@ -64,14 +64,14 @@ public class SpawnManager : MonoBehaviour
             // 적 게이지에 따라 스폰 시킴
             
             float enemySpawnGage = (enemySpawnIndex + 1) * 10f;
-            if (enemyGage >= enemySpawnGage)
+            if (enemyGage >= enemySpawnGage * 0.5f)
             {
 
                 enemyGage -= (enemySpawnIndex + 1) * 10f;
                 Spawn(enemyPawns, enemyTeamParent, enemyPawnPoints, enemySpawnIndex, false);
-                enemySpawnIndex = Random.Range(0, enemyPawns.Length);
-                Debug.Log(enemySpawnIndex);
-                enemySpawnNextDelay = Manager.Ins.dataPawn.enemyPawn.monster[enemySpawnIndex].delaytime;
+                enemySpawnIndex = Random.Range(0,enemyPawns.Length);
+                //Debug.Log(enemySpawnIndex);
+                enemySpawnNextDelay = 0.5f;
 
             }
             enemySpawnTime = 0;
